@@ -1,6 +1,6 @@
 require 'better-parallel-tests'
 
-describe 'Parser' do
+describe BetterParallelTests::Parser do
 
   let(:parser)      { BetterParallelTests::Parser.new                                               }
   let(:spec_file)   { File.join((File.expand_path File.dirname(__FILE__)), 'examples', 'a_spec.rb') }
