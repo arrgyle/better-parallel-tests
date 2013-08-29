@@ -1,16 +1,25 @@
-require_relative '../lib/parser'
+require 'better-parallel-tests'
 
 describe 'Parser' do
 
-  let(:current_dir) { File.expand_path File.dirname(__FILE__) }
-  let(:parser)      { BetterParallelTests::Parser.new         }
+  let(:parser)      { BetterParallelTests::Parser.new                                               }
+  let(:spec_file)   { File.join((File.expand_path File.dirname(__FILE__)), 'examples', 'a_spec.rb') }
+  let(:regex)       { /it /                                                                         }
 
   it 'gets line numbers of a single spec' do
-    parser.file "#{current_dir}/examples/a_spec.rb", /it /
-    parser.output[0].should eq 3
-    parser.output[1].should eq 7
-    parser.output[2].should eq 11
-    parser.output[3].should eq 15
+    parser.file spec_file, regex
+    parser.output[0].should include('3')
+    parser.output[1].should include('7')
+    parser.output[2].should include('11')
+    parser.output[3].should include('15')
+  end
+
+  it 'returns a collection of filename with line numbers appended' do
+    parser.file spec_file, regex
+    parser.output[0].should eq "#{spec_file}:3"
+    parser.output[1].should eq "#{spec_file}:7"
+    parser.output[2].should eq "#{spec_file}:11"
+    parser.output[3].should eq "#{spec_file}:15"
   end
 
 end

@@ -14,7 +14,7 @@ module BetterParallelTests
         line_number = 0
         File.open(filename).each_line do |line|
           line_number += 1
-          @output << line_number if line =~ regex
+          @output << "#{filename}:#{line_number}" if line =~ regex
         end
       end
 
