@@ -6,7 +6,7 @@ describe 'Parser' do
 
   it 'gets line numbers of a single spec' do
     parser.file 'a_spec.rb', /it /
-    parser.output.length.should be > 1
+    parser.output.each { |output| output.should include('it ') }
   end
 
 end
