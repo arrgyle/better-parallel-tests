@@ -4,12 +4,12 @@ module BetterParallelTests
     attr_reader :output
 
     def file(filename, regex)
-      greplines(filename, regex)
+      get_line_numbers_from_file_by_regex(filename, regex)
     end
 
     private
 
-      def greplines(filename, regex)
+      def get_line_numbers_from_file_by_regex(filename, regex)
         @output = []
         line_number = 0
         File.open(filename).each_line do |line|
