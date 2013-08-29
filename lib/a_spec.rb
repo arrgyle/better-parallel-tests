@@ -12,7 +12,7 @@ describe 'A' do
     puts '# 3'
   end
 
-  it '3' do
+  it '4' do
     puts '# 4'
   end
 

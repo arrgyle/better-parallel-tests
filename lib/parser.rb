@@ -11,9 +11,10 @@ module BetterParallelTests
 
       def greplines(filename, regex)
         @output = []
-        lineno = 0
+        line_number = 0
         File.open(filename).each_line do |line|
-          @output << "#{lineno += 1}: #{line}" if line =~ regex
+          line_number += 1
+          @output << line_number if line =~ regex
         end
       end
 
